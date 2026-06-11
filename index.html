@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>AoE2 Overlay</title>
+
+<style>
+
+html, body {
+  background: transparent !important;
+}
+
+body{
+  margin:0;
+  padding:8px;
+  background:transparent;
+  color:#eaeaea;
+  font-family:Arial;
+  font-size:12px;
+  overflow:hidden;
+}
+
+#setup{
+  position:absolute;
+  top:6px;
+  right:6px;
+  display:flex;
+  gap:6px;
+}
+
+input{
+  width:130px;
+  background:#0f0f0f;
+  color:#fff;
+  border:1px solid #333;
+  border-radius:6px;
+  padding:5px;
+  outline:none;
+}
+
+button{
+  background:#111;
+  color:#fff;
+  border:1px solid #333;
+  border-radius:6px;
+  padding:5px 10px;
+  cursor:pointer;
+}
+
+#hud{
+  display:none;
+  gap:18px;
+}
+
+.team{
+  width:220px;
+  padding:8px;
+  background:rgba(0,0,0,0.35);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:8px;
+}
+
+.player{
+  font-weight:600;
+  margin-bottom:3px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+#status{
+  position:absolute;
+  bottom:5px;
+  right:8px;
+  font-size:10px;
+  opacity:0.7;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="setup">
+  <input id="profileId" value="8793414">
+  <button onclick="start()">Load</button>
+</div>
+
+<div id="hud">
+  <div id="team1" class="team"></div>
+  <div id="team2" class="team"></div>
+</div>
+
+<div id="status">MODE: SETUP</div>
+
+<script>
+
+const { ipcRenderer } = require("electron");
+
+async function start() {
+
+  const id = document.getElementById("profileId").value.trim();
+
+  await ipcRenderer.invoke("start-profile", id);
+
+  document.getElementById("setup").style.display = "none";
+  document.getElementById("hud").style.display = "flex";
+}
+
+function render(players) {
+
+  if (!players || !players.length) return;
+
+  const team1 = players.filter(p => p.team === 1);
+  const team2 = players.filter(p => p.team === 2);
+
+  document.getElementById("team1").innerHTML =
+    team1.map(p =>
+      `<div class="player">${p.name} (${p.rating})</div>`
+    ).join("");
+
+  document.getElementById("team2").innerHTML =
+    team2.map(p =>
+      `<div class="player">${p.name} (${p.rating})</div>`
+    ).join("");
+}
+
+setInterval(async () => {
+
+  const data = await ipcRenderer.invoke("get-live-data");
+
+  if (!data || !data.length || !data[0]?.data?.players) return;
+
+  render(data[0].data.players);
+
+}, 1000);
+
+ipcRenderer.on("mode", (e, mode) => {
+
+  const setup = document.getElementById("setup");
+  const hud = document.getElementById("hud");
+  const status = document.getElementById("status");
+
+  if (mode === "setup") {
+    setup.style.display = "flex";
+    hud.style.display = "none";
+    status.innerText = "MODE: SETUP";
+  }
+
+  if (mode === "hud") {
+    setup.style.display = "none";
+    hud.style.display = "flex";
+    status.innerText = "MODE: HUD";
+  }
+
+  if (mode === "hide") {
+    setup.style.display = "none";
+    hud.style.display = "none";
+    status.innerText = "MODE: HIDDEN";
+  }
+});
+
+</script>
+
+</body>
+</html>

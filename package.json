@@ -1,0 +1,38 @@
+{
+  "name": "town-watch",
+  "version": "1.0.0",
+  "description": "Town Watch - AoE2 Overlay Tool",
+  "author": "Ghusen",
+  "main": "main.js",
+  "type": "commonjs",
+
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder"
+  },
+
+  "build": {
+    "appId": "com.townwatch.app",
+    "productName": "Town Watch",
+
+    "win": {
+      "target": "nsis"
+    },
+
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  },
+
+  "dependencies": {
+    "ws": "^8.21.0"
+  },
+
+  "devDependencies": {
+    "electron": "^42.4.0",
+    "electron-builder": "^26.15.2"
+  }
+}
