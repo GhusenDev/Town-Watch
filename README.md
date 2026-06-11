@@ -1,3 +1,5 @@
+To download the setup you can check releases in the right corner and download Town.Watch.Setup.1.0.0.exe
+
 Support TownWatch ❤️ https://www.patreon.com/c/Ghusen
 
 Town Watch is a small desktop utility that connects to an Age of Empires II match API and displays real-time opponent information (such as Elo ratings) directly on your screen.
