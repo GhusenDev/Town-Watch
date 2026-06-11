@@ -1,4 +1,4 @@
-To download the setup you can check releases in the right corner and download Town.Watch.Setup.1.0.0.exe
+To download the setup you can check releases on the right and download Town.Watch.Setup.1.0.0.exe
 
 Support TownWatch ❤️ https://www.patreon.com/c/Ghusen
 
