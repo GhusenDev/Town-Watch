@@ -1,6 +1,5 @@
 To download the setup you can check releases on the right and download Town.Watch.Setup.1.0.0.exe
 
-Support TownWatch ❤️ https://www.patreon.com/c/Ghusen
 
 Town Watch is a small desktop utility that connects to an Age of Empires II match API and displays real-time opponent information (such as Elo ratings) directly on your screen.
 It is designed to help players quickly understand match difficulty without tabbing out or checking external websites.
@@ -18,3 +17,5 @@ F8 → Toggle HUD on/off
 F8 (3rd press) → Return to profile input screen
 If Elo data does not load, press the button again to refresh.
 Pressing F8 after you load your profile is recommended because it activates the hud mode, if not you can accidentaly click names and elos.
+
+Support TownWatch ❤️ https://www.patreon.com/c/Ghusen
