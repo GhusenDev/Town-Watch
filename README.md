@@ -1,4 +1,4 @@
-To download the overlay you can check releases on the right and download Town.Watch.Setup.1.0.0.exe or TownWatch-v1.0.0-Portable.rar which is no install version
+To download the overlay you can check releases on the right and download Town.Watch.Setup.1.0.0.exe or TownWatch-v1.0.0-Portable.rar which is no install version.
 
 Town Watch is a small desktop utility that connects to an Age of Empires II match API and displays real-time opponent information (such as Elo ratings) directly on your screen.
 It is designed to help players quickly understand match difficulty without tabbing out or checking external websites.
